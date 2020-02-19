@@ -2,23 +2,25 @@ package tech.ioco.discovery.bank.client;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class ClientSubType {
     @Id
     private final String clientSubTypeCode;
-    private final String clientTypeCode;
+    @ManyToOne
+    private final ClientType clientType;
     private final String description;
 
-    public ClientSubType(String clientSubTypeCode, String clientTypeCode, String description) {
+    public ClientSubType(String clientSubTypeCode, ClientType clientType, String description) {
         this.clientSubTypeCode = clientSubTypeCode;
-        this.clientTypeCode = clientTypeCode;
+        this.clientType = clientType;
         this.description = description;
     }
 
     private ClientSubType() {
         this.clientSubTypeCode = null;
-        this.clientTypeCode = null;
+        this.clientType = null;
         this.description = null;
     }
 }
