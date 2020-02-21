@@ -1,5 +1,7 @@
 package tech.ioco.discovery.bank;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -15,20 +17,63 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import tech.ioco.discovery.bank.atm.AtmService;
+import tech.ioco.discovery.bank.atm.DenominationService;
+import tech.ioco.discovery.bank.atm.DenominationTypeService;
+import tech.ioco.discovery.bank.client.ClientService;
+import tech.ioco.discovery.bank.client.ClientSubTypeService;
+import tech.ioco.discovery.bank.client.ClientTypeService;
 import tech.ioco.discovery.bank.client.ClientUserService;
+import tech.ioco.discovery.bank.client.account.AccountTypeService;
+import tech.ioco.discovery.bank.client.account.ClientAccountService;
+import tech.ioco.discovery.bank.currency.CurrencyService;
+
+import javax.annotation.PostConstruct;
 
 @SpringBootApplication
 @EnableWebSecurity
 public class App extends SpringBootServletInitializer {
+    private Logger logger = LoggerFactory.getLogger(App.class);
     @Autowired
     private PasswordEncoder passwordEncoder;
     @Autowired
     private ClientUserService clientUserService;
+    @Autowired
+    private CurrencyService currencyService;
+    @Autowired
+    private ClientTypeService clientTypeService;
+    @Autowired
+    private ClientSubTypeService clientSubTypeService;
+    @Autowired
+    private AccountTypeService accountTypeService;
+    @Autowired
+    private ClientService clientService;
+    @Autowired
+    private ClientAccountService clientAccountService;
+    @Autowired
+    private DenominationTypeService denominationTypeService;
+    @Autowired
+    private AtmService atmService;
+    @Autowired
+    private DenominationService denominationService;
 
     public static void main(String[] args) {
         SpringApplication.run(App.class, args);
     }
 
+    @PostConstruct
+    public void init() {
+        logger.info("Adding defaults details. Please Wait...");
+        currencyService.addDefaults();
+        accountTypeService.addDefaults();
+        clientTypeService.addDefaults();
+        clientSubTypeService.addDefaults();
+        clientService.addDefaults();
+        clientAccountService.addDefaults();
+        denominationTypeService.addDefaults();
+        atmService.addDefaults();
+        denominationService.addDefaults();
+    }
 
     @Override
     protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
@@ -69,6 +114,7 @@ public class App extends SpringBootServletInitializer {
             }
         };
     }
+
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
