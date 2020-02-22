@@ -15,20 +15,20 @@ public class CurrencyService {
 
     public void addDefaults() {
         logger.info("Adding default currencies to the repository");
-        Optional<Currency> currency = repository.findById("USD");
+        Optional<Currency> currency = repository.findById(Currency.CODE_USD);
         if (currency.isEmpty()) {
             logger.info("Adding USD");
-            repository.save(new Currency("USD", "United States Dollar", 2));
+            repository.save(new Currency(Currency.CODE_USD, "United States Dollar", 2));
         }
-        currency = repository.findById("ZAR");
+        currency = repository.findById(Currency.CODE_ZAR);
         if (currency.isEmpty()) {
             logger.info("Adding ZAR ");
-            repository.save(new Currency("ZAR", "South African Rand", 2));
+            repository.save(new Currency(Currency.CODE_ZAR, "South African Rand", 2));
         }
-        currency = repository.findById("EUR");
+        currency = repository.findById(Currency.CODE_EURO);
         if (currency.isEmpty()) {
             logger.info("Adding Euro");
-            repository.save(new Currency("EUR", "Euro", 2));
+            repository.save(new Currency(Currency.CODE_EURO, "Euro", 2));
         }
     }
 }

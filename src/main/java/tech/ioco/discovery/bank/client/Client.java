@@ -6,7 +6,7 @@ import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Entity
-public class Client {
+public class Client{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int clientId;
@@ -41,10 +41,25 @@ public class Client {
         this.role = role;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public Title getTitle() {
+        return title;
+    }
+
+    public LocalDate getDateOfBirth() {
+        return dateOfBirth;
+    }
+
     public String getUsername() {
         return username;
     }
-
 
     public String getPassword() {
         return password;

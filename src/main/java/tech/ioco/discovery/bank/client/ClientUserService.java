@@ -12,20 +12,20 @@ import java.util.Optional;
 @Service
 public class ClientUserService implements UserDetailsService {
 
-   // @Autowired
+    @Autowired
     private ClientRepository repository;
     private final Logger logger = LoggerFactory.getLogger(ClientUserService.class);
 
     @Override
-    public AuthenticatedClient loadUserByUsername(String email) throws UsernameNotFoundException {
-        logger.info("Loading user {} by username", email);
-        Optional<Client> optionalUser = repository.findByUsername(email);
+    public AuthenticatedClient loadUserByUsername(String username) throws UsernameNotFoundException {
+        logger.info("Loading user {} by username", username);
+        Optional<Client> optionalUser = repository.findByUsername(username);
         logger.info("Found optional  {} ", optionalUser);
         AuthenticatedClient authenticatedUser;
         if (optionalUser.isPresent()) {
             authenticatedUser = new AuthenticatedClient(optionalUser.get());
         } else {
-            throw new UsernameNotFoundException("Could not find user with username " + email);
+            throw new UsernameNotFoundException("Could not find user with username " + username);
         }
         logger.info("Found and returning user {}", authenticatedUser);
 

@@ -21,6 +21,11 @@ public class CurrencyConversionRate {
         this.conversionIndicator = conversionIndicator;
     }
 
+    public BigDecimal getRate() {
+        return rate;
+    }
+
+
     //Pleasing the JPA Gods
     private CurrencyConversionRate() {
         this.conversionIndicator = 0;

@@ -5,16 +5,13 @@ import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
 @SpringBootTest
-class ClientAccountServiceSpringSpec extends Specification {
+class ClientAccountControllerSpringSpec extends Specification {
     @Autowired
-    private ClientAccountService service
+    private ClientAccountController controller
 
     def 'autowire dependencies'() {
         expect:
-        service.repository
-        service.clientRepository
-        service.accountTypeRepository
-        service.currencyRepository
-        service.currencyConversionRateRepository
+        controller.repository
+        controller.service
     }
 }

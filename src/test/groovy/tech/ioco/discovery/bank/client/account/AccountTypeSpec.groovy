@@ -10,7 +10,7 @@ class AccountTypeSpec extends Specification {
 
     def 'an account type with valid values is valid'() {
         expect:
-        Validation.buildDefaultValidatorFactory().validator.validate(SpecFactory.accountType).empty
+        Validation.buildDefaultValidatorFactory().validator.validate(SpecFactory.accountTypeCheque).empty
     }
 
     @Unroll('An account type with invalid account type code #accountTypeCode, description #description will be invalid')

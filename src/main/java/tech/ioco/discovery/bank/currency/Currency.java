@@ -1,7 +1,5 @@
 package tech.ioco.discovery.bank.currency;
 
-import org.springframework.stereotype.Service;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
@@ -9,6 +7,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 public class Currency {
+    public static final String CODE_USD = "USD";
+    public static final String CODE_EURO = "EUR";
+    public static final String CODE_ZAR = "ZAR";
     @Id
     @NotNull
     @Size(min = 3, max = 3)
@@ -22,6 +23,18 @@ public class Currency {
         this.currencyCode = currencyCode;
         this.description = description;
         this.decimalPlaces = decimalPlaces;
+    }
+
+    public String getCurrencyCode() {
+        return currencyCode;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public int getDecimalPlaces() {
+        return decimalPlaces;
     }
 
     //This to please the JPA Gods

@@ -18,7 +18,7 @@ public class AccountTypeService {
         Optional<AccountType> accountType = repository.findById("Savings");
         if (accountType.isEmpty()) {
             logger.info("Adding Saving account type to");
-            repository.save(new AccountType("Savings", "Savings Account", false));
+            repository.save(new AccountType("Savings", "Savings Account", true));
         }
         accountType = repository.findById("Cheque");
         if (accountType.isEmpty()) {
@@ -29,6 +29,11 @@ public class AccountTypeService {
         if (accountType.isEmpty()) {
             logger.info("Adding Credit Account Type");
             repository.save(new AccountType("Credit", "Credit Card", true));
+        }
+        accountType = repository.findById("Currency");
+        if (accountType.isEmpty()) {
+            logger.info("Adding Currency Account Type");
+            repository.save(new AccountType("Currency", "Currency Account", false));
         }
     }
 }

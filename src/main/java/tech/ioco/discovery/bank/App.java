@@ -85,7 +85,9 @@ public class App extends SpringBootServletInitializer {
         return new WebSecurityConfigurerAdapter() {
             @Override
             protected void configure(HttpSecurity http) throws Exception {
-                http.authorizeRequests().antMatchers("/login/**").permitAll();
+                http.authorizeRequests().antMatchers("/login/**").permitAll().
+                        antMatchers("/clientAccounts/{pageNumber}/{elementPerPage}").authenticated().
+                        antMatchers("/currencyClientAccounts/{pageNumber}/{elementPerPage}").authenticated();
             }
 
             @Override

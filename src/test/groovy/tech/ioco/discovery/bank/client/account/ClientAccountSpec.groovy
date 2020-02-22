@@ -20,9 +20,9 @@ class ClientAccountSpec extends Specification {
         where:
         client             | accountType             | currency             | balance
         null               | null                    | null                 | null
-        null               | SpecFactory.accountType | SpecFactory.currency | BigDecimal.ONE
+        null               | SpecFactory.accountTypeCheque | SpecFactory.currency | BigDecimal.ONE
         SpecFactory.client | null                    | SpecFactory.currency | BigDecimal.ONE
-        SpecFactory.client | SpecFactory.accountType | null                 | BigDecimal.ONE
-        SpecFactory.client | SpecFactory.accountType | SpecFactory.currency | null
+        SpecFactory.client | SpecFactory.accountTypeCheque | null                 | BigDecimal.ONE
+        SpecFactory.client | SpecFactory.accountTypeCheque | SpecFactory.currency | null
     }
 }

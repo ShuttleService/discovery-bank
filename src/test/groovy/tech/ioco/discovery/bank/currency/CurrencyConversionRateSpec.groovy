@@ -8,7 +8,7 @@ import javax.validation.Validation
 class CurrencyConversionRateSpec extends Specification {
     def 'a currency conversion rate with correct fields is valid'() {
         expect:
-        Validation.buildDefaultValidatorFactory().validator.validate(SpecFactory.currencyConversionRate).empty
+        Validation.buildDefaultValidatorFactory().validator.validate(SpecFactory.currencyConversionRateEURO).empty
     }
 
     def 'a currency conversion rate with null rate or currency code not 3 characters is invalid'() {

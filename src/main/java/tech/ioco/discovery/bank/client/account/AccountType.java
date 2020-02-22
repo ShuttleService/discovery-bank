@@ -4,9 +4,10 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 
 @Entity
-public class AccountType {
+public class AccountType implements Serializable {
     @Id
     @NotNull
     @Size(min = 1, max = 10)
@@ -23,8 +24,12 @@ public class AccountType {
     }
 
     //Please the JPA Gods
-    private AccountType(){
+    private AccountType() {
         this.accountTypeCode = null;
         this.description = null;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

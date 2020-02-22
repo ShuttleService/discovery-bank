@@ -16,7 +16,7 @@ public class AuthenticatedClient implements UserDetails {
     @NotNull
     @Valid
     private final Client client;
-
+    //Pleasing User Details Gods
     public AuthenticatedClient() {
         client = null;
     }
