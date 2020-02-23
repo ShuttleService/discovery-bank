@@ -47,7 +47,7 @@ class ClientAccountServiceSpec extends Specification {
         1 * accountTypeRepository.findById('Credit') >> Optional.of(SpecFactory.accountTypeCreditCard)
         then: 'save the client credit card account'
         1 * repository.save({ ClientAccount account ->
-            account.clientAccountNumber == 'test' && account.client == SpecFactory.client &&
+            account.clientAccountNumber == 'testC' && account.client == SpecFactory.client &&
                     account.accountType == SpecFactory.accountTypeCreditCard && account.currency == SpecFactory.currency
         })
         and: 'get the client  savings account type'
@@ -56,18 +56,18 @@ class ClientAccountServiceSpec extends Specification {
         1 * accountTypeRepository.findById('Savings') >> Optional.of(SpecFactory.accountTypeSaving)
         then: 'save the client savings account'
         1 * repository.save({ ClientAccount account ->
-            account.clientAccountNumber == 'test' && account.client == SpecFactory.client &&
+            account.clientAccountNumber == 'testS' && account.client == SpecFactory.client &&
                     account.accountType == SpecFactory.accountTypeSaving && account.currency == SpecFactory.currency
         })
         and: 'get the currency  account type'
-        1 * repository.findById('currency') >> Optional.empty()
+        1 * repository.findById('Currency') >> Optional.empty()
         and: 'get the usd account type'
         1 * currencyRepository.findById('USD') >> Optional.of(SpecFactory.currencyUS)
         and: 'get the currency account'
         1 * accountTypeRepository.findById('Currency') >> Optional.of(SpecFactory.accountTypeCurrency)
         then: 'save the client savings account'
         1 * repository.save({ ClientAccount account ->
-            account.clientAccountNumber == 'test' && account.client == SpecFactory.client &&
+            account.clientAccountNumber == 'Currency' && account.client == SpecFactory.client &&
                     account.accountType == SpecFactory.accountTypeCurrency && account.currency == SpecFactory.currencyUS
         })
     }
@@ -87,7 +87,7 @@ class ClientAccountServiceSpec extends Specification {
         1 * repository.findById('testS') >> Optional.of(SpecFactory.clientAccount)
         and: 'skip saving the client savings account'
         0 * repository.save({ ClientAccount account -> account.accountType.accountTypeCode == 'Savings' })
-        1 * repository.findById('currency') >> Optional.of(SpecFactory.clientAccount)
+        1 * repository.findById('Currency') >> Optional.of(SpecFactory.clientAccount)
         and: 'skip saving the client currency account'
         0 * repository.save({ ClientAccount account -> account.accountType.accountTypeCode == 'Currency' })
     }
@@ -139,5 +139,8 @@ class ClientAccountServiceSpec extends Specification {
         then: 'return currency accounts with no conversions'
         page.content.stream().allMatch({ ClientAccount clientAccount -> clientAccount.currencyDisplayBalance.empty })
     }
+
+    // @Issue('4.2.3. Withdraw cash')
+    // def 'with'() {}
 
 }

@@ -22,6 +22,14 @@ public class AtmAllocation {
         this.count = count;
     }
 
+    public Denomination getDenomination() {
+        return denomination;
+    }
+
+    public int getCount() {
+        return count;
+    }
+
     //Pleasing the JPA Gods
     private AtmAllocation() {
         this.atm = null;

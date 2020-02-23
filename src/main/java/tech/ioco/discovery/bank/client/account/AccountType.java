@@ -23,6 +23,10 @@ public class AccountType implements Serializable {
         this.transactional = transactional;
     }
 
+    public boolean isTransactional() {
+        return transactional;
+    }
+
     //Please the JPA Gods
     private AccountType() {
         this.accountTypeCode = null;

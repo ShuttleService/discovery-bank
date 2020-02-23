@@ -19,7 +19,7 @@ class ClientRepositorySpec extends Specification {
         given: 'a client sub type'
         ClientSubType clientSubType = clientSubTypeRepository.findById('STII').get()
         and: 'a client with no persistence identity'
-        Client client = new Client('some user name', 'some password', Title.DR, 'some name', 'Some surname', LocalDate.now(), clientSubType,Role.CLIENT)
+        Client client = new Client('some user name', 'some password', Title.DR, 'some name', 'Some surname', new Date(), clientSubType, Role.CLIENT)
         expect:
         client.clientId == 0
         when: 'saving the client'

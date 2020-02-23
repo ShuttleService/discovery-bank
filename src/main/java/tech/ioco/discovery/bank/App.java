@@ -1,5 +1,8 @@
 package tech.ioco.discovery.bank;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +90,9 @@ public class App extends SpringBootServletInitializer {
             protected void configure(HttpSecurity http) throws Exception {
                 http.authorizeRequests().antMatchers("/login/**").permitAll().
                         antMatchers("/clientAccounts/{pageNumber}/{elementPerPage}").authenticated().
-                        antMatchers("/currencyClientAccounts/{pageNumber}/{elementPerPage}").authenticated();
+                        antMatchers("/currencyClientAccounts/{pageNumber}/{elementPerPage}").authenticated().
+                        antMatchers("/withdraw").authenticated().
+                        and().csrf().disable();
             }
 
             @Override
@@ -112,7 +117,6 @@ public class App extends SpringBootServletInitializer {
                 registry.addMapping("/**").
                         allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE").
                         exposedHeaders("x-auth-token", "Authorization", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "Access-Control-Allow-Methods");
-
             }
         };
     }

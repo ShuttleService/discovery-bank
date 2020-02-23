@@ -69,7 +69,7 @@ public class ClientAccountService {
         if (testClientAccount.isEmpty()) {
             logger.info("Adding a test client Credit account to the repository");
             Optional<AccountType> credit = accountTypeRepository.findById("Credit");
-            final ClientAccount testAccount = new ClientAccount(test, testClient.get(), credit.get(), zar.get(), BigDecimal.ZERO);
+            final ClientAccount testAccount = new ClientAccount("testC", testClient.get(), credit.get(), zar.get(), BigDecimal.ZERO);
             repository.save(testAccount);
         }
 
@@ -77,17 +77,17 @@ public class ClientAccountService {
         if (testClientAccount.isEmpty()) {
             logger.info("Adding a test client Savings account to the repository");
             Optional<AccountType> savings = accountTypeRepository.findById("Savings");
-            final ClientAccount testAccount = new ClientAccount(test, testClient.get(), savings.get(), zar.get(), BigDecimal.ZERO);
+            final ClientAccount testAccount = new ClientAccount("testS", testClient.get(), savings.get(), zar.get(), BigDecimal.ZERO);
             repository.save(testAccount);
         }
 
-        testClientAccount = repository.findById("currency");
+        testClientAccount = repository.findById("Currency");
 
         if (testClientAccount.isEmpty()) {
             logger.info("Adding a test client Currency account to the repository");
             Optional<AccountType> currency = accountTypeRepository.findById("Currency");
             Optional<Currency> usd = currencyRepository.findById("USD");
-            final ClientAccount testAccount = new ClientAccount(test, testClient.get(), currency.get(), usd.get(), BigDecimal.ZERO);
+            final ClientAccount testAccount = new ClientAccount("Currency", testClient.get(), currency.get(), usd.get(), BigDecimal.ZERO);
             repository.save(testAccount);
         }
     }

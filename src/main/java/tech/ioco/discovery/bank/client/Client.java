@@ -3,10 +3,10 @@ package tech.ioco.discovery.bank.client;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
-public class Client{
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int clientId;
@@ -22,7 +22,7 @@ public class Client{
     @NotNull
     private final String surname;
     @NotNull
-    private final LocalDate dateOfBirth;
+    private final Date dateOfBirth;
     @ManyToOne
     @NotNull
     private final ClientSubType clientSubType;
@@ -30,7 +30,7 @@ public class Client{
     @NotNull
     private final Role role;
 
-    public Client(String username, String password, Title title, String name, String surname, LocalDate dateOfBirth, ClientSubType clientSubType, Role role) {
+    public Client(String username, String password, Title title, String name, String surname, Date dateOfBirth, ClientSubType clientSubType, Role role) {
         this.username = username;
         this.surname = surname;
         this.password = password;
@@ -53,7 +53,7 @@ public class Client{
         return title;
     }
 
-    public LocalDate getDateOfBirth() {
+    public Date getDateOfBirth() {
         return dateOfBirth;
     }
 
@@ -63,6 +63,16 @@ public class Client{
 
     public String getPassword() {
         return password;
+    }
+
+    public int getClientId() {
+        return clientId;
+    }
+
+
+    @Override
+    public String toString() {
+        return name;
     }
 
     //This is to please the JPA Gods

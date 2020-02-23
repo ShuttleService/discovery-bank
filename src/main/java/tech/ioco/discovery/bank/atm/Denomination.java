@@ -20,9 +20,22 @@ public class Denomination {
         this.denominationType = denominationType;
     }
 
+    public BigDecimal getValue() {
+        return value;
+    }
+
     //Pleasing the JPA Gods
     private Denomination() {
         this.value = null;
         this.denominationType = null;
+    }
+
+    @Override
+    public String toString() {
+        return "Denomination{" +
+                "denominationId=" + denominationId +
+                ", value=" + value +
+                ", denominationType=" + denominationType +
+                '}';
     }
 }

@@ -56,7 +56,7 @@ class ClientAccountControllerSpec extends Specification {
                 andExpect(jsonPath('$.content[0].client.name').value(SpecFactory.clientAccount.client.name)).
                 andExpect(jsonPath('$.content[0].client.surname').value(SpecFactory.clientAccount.client.surname)).
                 andExpect(jsonPath('$.content[0].client.title').value(SpecFactory.clientAccount.client.title.name())).
-                andExpect(jsonPath('$.content[0].client.dateOfBirth').value(SpecFactory.clientAccount.client.dateOfBirth.toString())).
+                andExpect(jsonPath('$.content[0].client.dateOfBirth').exists()).
                 andExpect(jsonPath('$.content[0].currency.currencyCode').value(SpecFactory.clientAccount.currency.currencyCode)).
                 andExpect(jsonPath('$.content[0].currency.decimalPlaces').value(SpecFactory.clientAccount.currency.decimalPlaces)).
                 andExpect(jsonPath('$.content[0].currency.description').value(SpecFactory.clientAccount.currency.description))

@@ -26,5 +26,22 @@ class ClientAccountRepositorySpec extends Specification {
         page.totalElements == 1
     }
 
+    @Issue('4.2.3. Withdraw cash')
+    def 'withdrawing cash reduces the displayBalance by the withdrawn amount'() {
+        given: 'an amount to withdraw'
+        BigDecimal withdrawalAmount = 67
+        and: 'an account to withdraw from '
+        ClientAccount clientAccount = repository.findById('testC').get()
+        and: 'the balance before withdrawal'
+        BigDecimal balanceBeforeWithdrawal = clientAccount.displayBalance
+        when: 'withdrawing from  a client account'
+        int numberOfRowsUpdated = repository.withdraw(clientAccount, withdrawalAmount)
+        then: 'exactly one row is updated'
+        numberOfRowsUpdated == 1
+        when: 'getting the client account again'
+        clientAccount = repository.findById('testC').get()
+        then: 'the display balance had been reduced by the withdrawal amount'
+        clientAccount.displayBalance == balanceBeforeWithdrawal - withdrawalAmount
+    }
 
 }

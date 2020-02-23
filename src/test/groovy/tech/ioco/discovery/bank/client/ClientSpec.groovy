@@ -5,9 +5,10 @@ import spock.lang.Unroll
 import tech.ioco.discovery.bank.SpecFactory
 
 import javax.validation.Validation
-import java.time.LocalDate
 
 class ClientSpec extends Specification {
+
+    final static Date date = new Date()
 
     def 'a client with all valid fields will be valid'() {
         expect:
@@ -21,15 +22,15 @@ class ClientSpec extends Specification {
         then: 'the client is invalid'
         !valid
         where:
-        username        | password        | title      | name        | surname        | dob             | clientSubType             | role
-        null            | null            | null       | null        | null           | null            | null                      | null
-        null            | 'some password' | Title.MISS | 'some name' | 'some surname' | LocalDate.now() | SpecFactory.clientSubType | Role.CLIENT
-        'some username' | null            | Title.MISS | 'some name' | 'some surname' | LocalDate.now() | SpecFactory.clientSubType | Role.CLIENT
-        'some username' | 'some password' | null       | 'some name' | 'some surname' | LocalDate.now() | SpecFactory.clientSubType | Role.CLIENT
-        'some username' | 'some password' | Title.MISS | null        | 'some surname' | LocalDate.now() | SpecFactory.clientSubType | Role.CLIENT
-        'some username' | 'some password' | Title.MISS | 'some name' | null           | LocalDate.now() | SpecFactory.clientSubType | Role.CLIENT
-        'some username' | 'some password' | Title.MISS | 'some name' | 'some surname' | null            | SpecFactory.clientSubType | Role.CLIENT
-        'some username' | 'some password' | Title.MISS | 'some name' | 'some surname' | LocalDate.now() | null                      | Role.CLIENT
-        'some username' | 'some password' | Title.MISS | 'some name' | 'some surname' | LocalDate.now() | SpecFactory.clientSubType | null
+        username        | password        | title      | name        | surname        | dob  | clientSubType             | role
+        null            | null            | null       | null        | null           | null | null                      | null
+        null            | 'some password' | Title.MISS | 'some name' | 'some surname' | date | SpecFactory.clientSubType | Role.CLIENT
+        'some username' | null            | Title.MISS | 'some name' | 'some surname' | date | SpecFactory.clientSubType | Role.CLIENT
+        'some username' | 'some password' | null       | 'some name' | 'some surname' | date | SpecFactory.clientSubType | Role.CLIENT
+        'some username' | 'some password' | Title.MISS | null        | 'some surname' | date | SpecFactory.clientSubType | Role.CLIENT
+        'some username' | 'some password' | Title.MISS | 'some name' | null           | date | SpecFactory.clientSubType | Role.CLIENT
+        'some username' | 'some password' | Title.MISS | 'some name' | 'some surname' | null | SpecFactory.clientSubType | Role.CLIENT
+        'some username' | 'some password' | Title.MISS | 'some name' | 'some surname' | date | null                      | Role.CLIENT
+        'some username' | 'some password' | Title.MISS | 'some name' | 'some surname' | date | SpecFactory.clientSubType | null
     }
 }

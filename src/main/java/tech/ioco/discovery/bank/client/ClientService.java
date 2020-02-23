@@ -7,6 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -25,13 +26,13 @@ public class ClientService {
         Optional<Client> client = repository.findByUsername("admin");
         if (client.isEmpty()) {
             logger.info("Adding an admin to the repository");
-            repository.save(new Client("admin", passwordEncoder.encode("adminPassword"), Title.DR, "Admin", "Discovery", LocalDate.now(),
+            repository.save(new Client("admin", passwordEncoder.encode("adminPassword"), Title.DR, "Admin", "Discovery", new Date(),
                     clientSubType.get(), Role.ADMIN));
         }
         client = repository.findByUsername("test");
         if (client.isEmpty()) {
             logger.info("Adding a test user to the repository");
-            repository.save(new Client("test", passwordEncoder.encode("testPassword"), Title.DR, "Test", "Discovery", LocalDate.now(),
+            repository.save(new Client("test", passwordEncoder.encode("testPassword"), Title.DR, "Test", "Discovery", new Date(),
                     clientSubType.get(), Role.CLIENT));
         }
     }
