@@ -4,9 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
 
-import java.time.LocalDate
-
-
 @SpringBootTest
 class ClientRepositorySpec extends Specification {
     @Autowired

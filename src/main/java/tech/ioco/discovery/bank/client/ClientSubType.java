@@ -2,6 +2,7 @@ package tech.ioco.discovery.bank.client;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -9,6 +10,7 @@ public class ClientSubType {
     @Id
     private final String clientSubTypeCode;
     @ManyToOne
+    @JoinColumn(name = "client_type_code")
     private final ClientType clientType;
     private final String description;
 

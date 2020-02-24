@@ -3,6 +3,7 @@ package tech.ioco.discovery.bank.client.account
 import spock.lang.Specification
 import spock.lang.Unroll
 import tech.ioco.discovery.bank.SpecFactory
+
 import javax.validation.Validation
 
 class ClientAccountSpec extends Specification {

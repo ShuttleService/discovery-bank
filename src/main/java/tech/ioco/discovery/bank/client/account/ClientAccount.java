@@ -3,10 +3,7 @@ package tech.ioco.discovery.bank.client.account;
 import tech.ioco.discovery.bank.client.Client;
 import tech.ioco.discovery.bank.currency.Currency;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Transient;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
@@ -19,12 +16,15 @@ public class ClientAccount {
     private final String clientAccountNumber;
     @ManyToOne
     @NotNull
+    @JoinColumn(name = "client_id")
     private final Client client;
     @ManyToOne
     @NotNull
+    @JoinColumn(name = "account_type_code")
     private final AccountType accountType;
     @ManyToOne
     @NotNull
+    @JoinColumn(name = "currency_code")
     private final Currency currency;
     @NotNull
     private final BigDecimal displayBalance;

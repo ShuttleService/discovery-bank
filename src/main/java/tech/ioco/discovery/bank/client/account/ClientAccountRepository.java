@@ -9,7 +9,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 import tech.ioco.discovery.bank.client.Client;
 
-
 import java.math.BigDecimal;
 
 public interface ClientAccountRepository extends JpaRepository<ClientAccount, String> {

@@ -10,9 +10,11 @@ public class AtmAllocation {
     private int atmAllocationId;
     @NotNull
     @OneToOne
+    @JoinColumn(name = "atm_id")
     private final Atm atm;
     @NotNull
     @ManyToOne
+    @JoinColumn(name = "denomination_id")
     private final Denomination denomination;
     private final int count;
 

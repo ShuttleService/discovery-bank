@@ -1,25 +1,13 @@
 package tech.ioco.discovery.bank
 
-
-import tech.ioco.discovery.bank.atm.Atm
-import tech.ioco.discovery.bank.atm.AtmAllocation
-import tech.ioco.discovery.bank.atm.Denomination
-import tech.ioco.discovery.bank.atm.DenominationType
-import tech.ioco.discovery.bank.atm.WithdrawalAllocation
-import tech.ioco.discovery.bank.atm.WithdrawalRequest
-import tech.ioco.discovery.bank.client.Client
-import tech.ioco.discovery.bank.client.ClientSubType
-import tech.ioco.discovery.bank.client.ClientType
-import tech.ioco.discovery.bank.client.Role
-import tech.ioco.discovery.bank.client.Title
+import tech.ioco.discovery.bank.atm.*
+import tech.ioco.discovery.bank.client.*
 import tech.ioco.discovery.bank.client.account.AccountType
 import tech.ioco.discovery.bank.client.account.ClientAccount
 import tech.ioco.discovery.bank.client.account.CreditCardLimit
 import tech.ioco.discovery.bank.client.account.CurrencyDisplayBalance
 import tech.ioco.discovery.bank.currency.Currency
 import tech.ioco.discovery.bank.currency.CurrencyConversionRate
-
-import java.time.LocalDate
 
 class SpecFactory {
     final static DenominationType denominationType = new DenominationType('C', 'some description')

@@ -13,6 +13,7 @@ public class Denomination {
     private final BigDecimal value;
     @ManyToOne
     @NotNull
+    @JoinColumn(name = "denomination_type_code")
     private final DenominationType denominationType;
 
     public Denomination(BigDecimal value, DenominationType denominationType) {

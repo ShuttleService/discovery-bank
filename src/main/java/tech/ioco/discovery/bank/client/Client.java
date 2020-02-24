@@ -25,6 +25,7 @@ public class Client {
     private final Date dateOfBirth;
     @ManyToOne
     @NotNull
+    @JoinColumn(name = "client_sub_type_code")
     private final ClientSubType clientSubType;
     @Enumerated(EnumType.STRING)
     @NotNull
