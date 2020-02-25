@@ -11,4 +11,4 @@ This is because all my methods return an empty page in these cases to the UI.
 3. On all questions as well I also deliberately by design not cater for  "The UI needs to be aware of how to format the amount"
  This is because I return to the UI the currency which has a field - decimal places. This is meant to be used by the ui to format the amount
  
-4. The queries scripts were tested agains SQL Server. Please note that I have included queries for the given ERD as well as the ones that may result should the database be auto created
+4. The queries scripts were tested agains SQL Server.
