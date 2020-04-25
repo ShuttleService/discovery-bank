@@ -4,6 +4,9 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
+    public static void main(String... ar) {
+        System.out.println(getMinimumUniqueSum(Arrays.asList(1, 32, 4, 2, 1, 4, 7, 4, 74, 7)));
+    }
 
     public static String lastLetters(String word) {
         // Write your code here
@@ -14,44 +17,49 @@ public class Main {
         return lastTwoCharacters.substring(1) + " " + lastTwoCharacters.substring(0, 1);
     }
 
-    public static boolean containsDuplicates(List<Integer> integers) {
-        Set<Integer> set = new HashSet<>(integers);
-        return set.size() != integers.size();
-    }
-
     public static int getMinimumUniqueSum(List<Integer> arr) {
         // Write your code here
         List<Integer> copy = new ArrayList<>(arr);
 
         boolean containsDuplicate;
         do {
-            containsDuplicate = containsDuplicates(copy);
-            doubleDuplicate(copy);
+            containsDuplicate = !duplicates(copy).isEmpty();
+            if (containsDuplicate) {
+                List<Integer> duplicates = duplicates(copy);
+                doubleIntegerAt(copy, duplicates);
+            }
         }
         while (containsDuplicate);
 
-        return copy.stream().reduce(Integer::sum).get();
+        return copy.stream().reduce(Integer::sum).orElse(0);
     }
 
-    public static List<Integer> doubleDuplicate(List<Integer> copy) {
-        copy.sort(Comparator.comparingInt(a -> a));
 
-        for (int i = 1; i < copy.size(); i++) {
-            if (copy.get(i - 1).equals(copy.get(i))) {
-                doubleIntegerAt(copy, i);
+    public static List<Integer> duplicates(List<Integer> integers) {
+        Set<Integer> duplicateValues = new HashSet<>();
+        List<Integer> firstDuplicatePositions = new ArrayList<>();
+        Collections.sort(integers);
+
+        for (int i = 0; i < (integers.size() - 1); i++) {
+            Integer subject = integers.get(i);
+            Integer next = integers.get(i + 1);
+            if (duplicateValues.contains(subject)) {
+                continue;
+            }
+
+            if (subject.equals(next)) {
+                duplicateValues.add(subject);
+                firstDuplicatePositions.add(i);
             }
         }
-
-        return copy;
+        return firstDuplicatePositions;
     }
 
-    public static void doubleIntegerAt(List<Integer> integers, int i) {
-        integers.set(i, integers.get(i) * 2);
+
+    public static void doubleIntegerAt(List<Integer> integers, List<Integer> indexes) {
+        indexes.forEach(index -> integers.set(index, integers.get(index) * 2));
     }
 
-    public static void main(String... ar) {
-        System.out.println(commonPrefix(Arrays.asList("abcabcd", "ababaa")));
-    }
 
     public static List<Integer> commonPrefix(List<String> inputs) {
         // Write your code here

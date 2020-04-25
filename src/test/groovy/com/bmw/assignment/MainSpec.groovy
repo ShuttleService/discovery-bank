@@ -67,6 +67,46 @@ class MainSpec extends spock.lang.Specification {
         longestCommonPrefixesLengths[3] == 10
         longestCommonPrefixesLengths[4] == 11
     }
+
+    def 'Doubling integer @ multiplies the integers at the given indexex'() {
+        given:
+        List<Integer> integers = [0, 1, 2, 3, 4, 5]
+        when:
+        Main.doubleIntegerAt(integers, [1, 4])
+        then:
+        integers[1] == 2
+        integers[0] == 0
+        integers[2] == 2
+        integers[3] == 3
+        integers[4] == 8
+        integers[5] == 5
+        integers.size() == 6
+    }
+
+    def 'duplicates gives the positions of the first duplicate integers '() {
+        given:
+        List<Integer> integers = [1, 2, 1]
+        expect:
+        Main.duplicates(integers) == [0]
+        integers.size() == 3
+        Main.duplicates([1, 2, 3]) == []
+        Main.duplicates([1, 10, 2, 3, 2, 3, 4, 4, 6, 6, 7, 4, 5, 10]) == [1, 3, 5, 9, 12]
+        //This will be 1 2 2 3 3 4 4 4 5 6 6 7 10 10
+
+    }
+
+    def 'get minimum sum for given integers'() {
+        expect:
+        Main.getMinimumUniqueSum([0]) == 0
+        Main.getMinimumUniqueSum([1]) == 1
+        Main.getMinimumUniqueSum([1, 2]) == 3
+        Main.getMinimumUniqueSum([1, 1]) == 3
+        Main.getMinimumUniqueSum([1, 1, 3]) == 6
+        Main.getMinimumUniqueSum([1, 1, 2]) == 7
+        Main.getMinimumUniqueSum([1, 1, 2, 2]) == 15
+        Main.getMinimumUniqueSum([2, 1, 2, 1]) == 9
+    }
+
 }
 
 
