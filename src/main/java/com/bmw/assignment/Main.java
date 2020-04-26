@@ -26,7 +26,7 @@ public class Main {
             containsDuplicate = !duplicates(copy).isEmpty();
             if (containsDuplicate) {
                 List<Integer> duplicates = duplicates(copy);
-                doubleIntegerAt(copy, duplicates);
+                incrementAt(copy, duplicates);
             }
         }
         while (containsDuplicate);
@@ -56,8 +56,8 @@ public class Main {
     }
 
 
-    public static void doubleIntegerAt(List<Integer> integers, List<Integer> indexes) {
-        indexes.forEach(index -> integers.set(index, integers.get(index) * 2));
+    public static void incrementAt(List<Integer> integers, List<Integer> indexes) {
+        indexes.forEach(index -> integers.set(index, integers.get(index) + 1));
     }
 
 
@@ -67,21 +67,18 @@ public class Main {
 
         inputs.forEach((string) -> {
             List<String> suffixes = suffixes(string);
-
             List<Integer> commonPrefixLength = new ArrayList<>();
-
             suffixes.forEach((suffix -> {
                         List<String> prefixes = prefixes(suffix);
                         List<PrefixAndString> prefixAndStrings = new ArrayList<>();
                         prefixes.forEach(prefix -> prefixAndStrings.add(new PrefixAndString(prefix, string)));
                         commonPrefixLength.add(commonPrefixLength(prefixAndStrings));
                     })
-
             );
             commonPrefixLengths.add(commonPrefixLength);
         });
 
-        return commonPrefixLengths.stream().map(cpl -> sum(cpl)).collect(Collectors.toUnmodifiableList());
+        return commonPrefixLengths.stream().map(cpl -> sum(cpl)).collect(Collectors.toList());
     }
 
     public static int sum(List<Integer> ints) {

@@ -68,17 +68,17 @@ class MainSpec extends spock.lang.Specification {
         longestCommonPrefixesLengths[4] == 11
     }
 
-    def 'Doubling integer @ multiplies the integers at the given indexex'() {
+    def 'Adding 1 to an integer @ increments by 1 the integers at the given indexex'() {
         given:
         List<Integer> integers = [0, 1, 2, 3, 4, 5]
         when:
-        Main.doubleIntegerAt(integers, [1, 4])
+        Main.incrementAt(integers, [1, 4])
         then:
         integers[1] == 2
         integers[0] == 0
         integers[2] == 2
         integers[3] == 3
-        integers[4] == 8
+        integers[4] == 5
         integers[5] == 5
         integers.size() == 6
     }
@@ -102,11 +102,9 @@ class MainSpec extends spock.lang.Specification {
         Main.getMinimumUniqueSum([1, 2]) == 3
         Main.getMinimumUniqueSum([1, 1]) == 3
         Main.getMinimumUniqueSum([1, 1, 3]) == 6
-        Main.getMinimumUniqueSum([1, 1, 2]) == 7
-        Main.getMinimumUniqueSum([1, 1, 2, 2]) == 15
-        Main.getMinimumUniqueSum([2, 1, 2, 1]) == 9
+        Main.getMinimumUniqueSum([1, 1, 2]) == 6
+        Main.getMinimumUniqueSum([1, 1, 2, 2]) == 10
+        Main.getMinimumUniqueSum([2, 1, 2, 1]) == 10
     }
 
 }
-
-
